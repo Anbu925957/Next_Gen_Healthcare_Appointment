@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+    <aside class="sidebar">
+        <h2>NextGen Health</h2>
+        <p>Doctor Panel</p>
+
+        <ul>
+            <li class="active">Dashboard</li>
+            <li>Patient Requests</li>
+            <li onclick="logout()">Logout</li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h1 id="welcomeUser">Welcome</h1>
+        </div>
+
+        <!-- Debug: shows matched appointments and report presence (temporary) -->
+        <div style="margin:12px 0;">
+            <pre id="doctorDebug" style="background:#fff;border:1px solid #eee;padding:8px;max-height:200px;overflow:auto;">Debug info will appear here</pre>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Today Appointments</h3>
+                <p>8</p>
+            </div>
+            <div class="card">
+                <h3>Pending Requests</h3>
+                <p>5</p>
+            </div>
+            <div class="card">
+                <h3>Total Patients</h3>
+                <p>120</p>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Hospital</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Report</th>
+                </tr>
+            </thead>
+            <tbody id="doctorAppointmentsBody">
+                <!-- Appointments populated dynamically -->
+            </tbody>
+        </table>
+    </main>
+</div>
+
+<!-- Report Modal for doctor -->
+<div id="doctorReportModal" class="modal">
+    <div class="modal-content">
+        <h2>Patient Report</h2>
+        <p><strong>Summary:</strong> <span id="drReportSummary"></span></p>
+        <p><strong>Symptoms:</strong> <span id="drReportSymptoms"></span></p>
+        <p><strong>Body parts:</strong> <span id="drReportBodyParts"></span></p>
+        <p><strong>Severity:</strong> <span id="drReportSeverity"></span></p>
+        <p><strong>Details:</strong> <span id="drReportDescription"></span></p>
+        <label>Doctor Notes</label>
+        <textarea id="doctorNotes" rows="4" style="width:100%"></textarea>
+        <div class="modal-actions">
+            <button class="btn" id="closeDrReport">Close</button>
+            <button class="btn primary" id="saveDrNotes">Save & Mark Reviewed</button>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/js/data.js"></script>
+<script src="doctor.js"></script>
+</body>
+</html>

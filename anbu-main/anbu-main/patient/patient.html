@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+    <aside class="sidebar">
+        <h2>NextGen Health</h2>
+        <p>Patient Panel</p>
+
+        <ul>
+            <li class="active">Dashboard</li>
+            <li>Appointments</li>
+            <li onclick="logout()">Logout</li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h1 id="welcomeUser">Welcome</h1>
+            <button class="btn primary">+ Book Appointment</button>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Appointments</h3>
+                <p>24</p>
+            </div>
+            <div class="card">
+                <h3>Upcoming</h3>
+                <p>3</p>
+            </div>
+            <div class="card">
+                <h3>Completed</h3>
+                <p>21</p>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Hospital</th>
+                    <th>Doctor</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Report</th>
+                </tr>
+            </thead>
+            <tbody id="patientAppointmentsBody">
+                <!-- Appointments populated dynamically -->
+            </tbody>
+        </table>
+    </main>
+</div>
+
+
+<!-- Book Appointment Modal -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <h2>Book Appointment</h2>
+
+        <form id="bookingForm">
+            <label>Hospital</label>
+            <select id="hospitalSelect" required>
+                <option value="">Select</option>
+            </select>
+
+            <label>Department</label>
+            <select id="departmentSelect" required>
+                <option value="">Select</option>
+                <option>Cardiology</option>
+                <option>Orthopedics</option>
+                <option>Dermatology</option>
+            </select>
+
+            <label>Doctor</label>
+            <select id="doctorSelect" required>
+                <option value="">Select</option>
+            </select>
+
+            <label>Date</label>
+            <input type="date" required>
+
+            <div class="modal-actions">
+                <button type="submit" class="btn primary">Submit</button>
+                <button type="button" class="btn danger" onclick="closeModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Nanba Chat Bubble + Panel -->
+<button class="nanba-bubble" onclick="openNanba()">Nanba<span class="badge">!</span></button>
+
+<script>
+function openNanba() {
+    window.location.href = "D:/Pyplots.exe/example/templates/chatbot.html";
+}
+</script>
+
+
+<div id="nanbaPanel" class="nanba-chat" style="display:none;">
+    <div class="nanba-header">
+        <div class="title">Nanba</div>
+        <div><button id="minimizeNanba" class="btn" title="Close">✕</button></div>
+    </div>
+    <div id="nanbaMessages" class="nanba-messages"></div>
+
+    <div class="quick-chips" id="nanbaChips">
+        <div class="chip">fever</div>
+        <div class="chip">cough</div>
+        <div class="chip">pain</div>
+        <div class="chip">shortness of breath</div>
+        <div class="chip">rash</div>
+    </div>
+
+    <div class="chat-input-row">
+        <input type="text" id="nanbaInput" placeholder="Describe your symptom or choose a chip...">
+        <button id="nanbaSend" class="btn primary">Send</button>
+    </div>
+    <div style="padding:8px 12px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--border)">
+        <button id="nanbaCancel" class="btn">Cancel</button>
+        <button id="nanbaSave" class="btn primary" style="display:none;">Save Report</button>
+    </div>
+</div>
+
+<!-- Support Bubble -->
+<button id="supportBtn" class="support-bubble" aria-label="Customer Support">?</button>
+
+<!-- Support Modal -->
+<div id="supportModal" class="modal support-modal">
+    <div class="modal-content">
+        <h2>Contact Support</h2>
+        <label>Your message</label>
+        <textarea id="supportMessage" placeholder="Describe your issue or question..."></textarea>
+        <div class="modal-actions">
+            <button class="btn" id="cancelSupport">Cancel</button>
+            <button class="btn primary" id="sendSupport">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- Report Preview Modal for patient -->
+<div id="reportModal" class="modal">
+    <div class="modal-content">
+        <h2>Report Preview</h2>
+        <p><strong>Summary:</strong> <span id="reportSummary"></span></p>
+        <p><strong>Symptoms:</strong> <span id="reportSymptoms"></span></p>
+        <p><strong>Body parts:</strong> <span id="reportBodyParts"></span></p>
+        <p><strong>Severity:</strong> <span id="reportSeverity"></span></p>
+        <p><strong>Details:</strong> <span id="reportDescription"></span></p>
+        <div class="modal-actions">
+            <button class="btn" id="deleteReportBtn">Delete Report</button>
+            <button class="btn" onclick="closeReportModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/chatbot.js"></script>
+<script src="../assets/js/support.js"></script>
+<script src="patient.js"></script>
+
+</body>
+</html>
